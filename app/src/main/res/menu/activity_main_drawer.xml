@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/home"
+            android:title="HOME" />
+        <item
+            android:id="@+id/nav_beginners"
+            android:icon="@drawable/ic_bubble_chart_black_24dp"
+            android:title="BEGINNERS" />
+        <item
+            android:id="@+id/nav_intermediate"
+            android:icon="@drawable/ic_bubble_chart_black_24dp"
+            android:title="INTERMEDIATE" />
+        <item
+            android:id="@+id/nav_advanced"
+            android:icon="@drawable/ic_bubble_chart_black_24dp"
+            android:title="ADVANCED" />
+        <item
+            android:id="@+id/nav_FAQ"
+            android:icon="@drawable/askquestion"
+            android:title="FAQ" />
+    </group>
+
+    <item android:title="Communicate">
+        <menu>
+            <item
+                android:id="@+id/nav_setting"
+                android:icon="@drawable/services"
+                android:title="SETTING" />
+            <item
+                android:id="@+id/nav_share"
+                android:icon="@drawable/ic_menu_send"
+                android:title="SHARE" />
+        </menu>
+    </item>
+
+</menu>
