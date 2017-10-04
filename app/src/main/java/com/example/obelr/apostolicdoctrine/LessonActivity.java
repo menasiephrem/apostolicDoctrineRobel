@@ -115,7 +115,7 @@ public class LessonActivity extends AppCompatActivity {
     private void updateLesson(){
 
         curLesson = controller.getLesson(LessonID);
-        getSupportActionBar().setTitle(curLesson.getLESSON_TITLE());
+//        getSupportActionBar().setTitle(curLesson.getLESSON_TITLE());
         LessonStr.setText(extractVerse(curLesson.getLESSON_STRING()));
         LessonStr.setMovementMethod(LinkMovementMethod.getInstance());
         LessonStr.setHighlightColor(Color.TRANSPARENT);

@@ -31,8 +31,11 @@
             android:name=".Advanced"
             android:label="@string/title_activity_advanced"
             />
+
         <activity android:name=".setting"
             android:label="Setting"/>
+
+    <activity android:name=".LessonActivity"></activity>
     </application>
 
 </manifest>

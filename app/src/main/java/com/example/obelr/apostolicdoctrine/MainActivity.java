@@ -13,6 +13,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.Toast;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -20,6 +26,10 @@ public class MainActivity extends AppCompatActivity
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     Toolbar toolbar=null;
+    ListView listView;
+    ArrayList<Module> modules;
+    String [] strArr;
+    DBController controller;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,15 +39,27 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setBackgroundColor(constant.color);
+        controller = new DBController(this);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        listView = (ListView)findViewById(R.id.MainList);
+
+        updateListView();
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if(position == 0||position == 1){
+                    Intent intent = new Intent(MainActivity.this,LessonActivity.class)
+                            .putExtra(Intent.EXTRA_TEXT,modules.get(position).getMODULE_CURRENT_LESSON());
+                    startActivity(intent);
+
+                }
+                else
+                    Toast.makeText(MainActivity.this, "COMING SOON :)", Toast.LENGTH_SHORT).show();
             }
         });
+
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -62,22 +84,29 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
+        getMenuInflater().inflate(R.menu.main_menu, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
+        if (id==R.id.action_lan)
+        {
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+            if (DBHandler.langIsEnglish){
+                item.setTitle("ENGLISH");
+                getSupportActionBar().setTitle("የሐዋርያት ትምህርት");
+                DBHandler.langIsEnglish = false;
+            }else{
+                item.setTitle("አማርኛ");
+                getSupportActionBar().setTitle(R.string.app_name);
+                DBHandler.langIsEnglish = true;
+            }
+
+            updateListView();
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -115,5 +144,19 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    void updateListView(){
+
+
+        modules = controller.getAllMoudles();
+        strArr = new String[modules.size()];
+        for (int i = 0; i<strArr.length; i++)
+        {
+            strArr[i]=modules.get(i).getMODULE_TITLE();
+        }
+
+        listView.setAdapter(new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,
+                strArr));
     }
 }
