@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.method.LinkMovementMethod;
@@ -27,6 +28,7 @@ public class LessonActivity extends AppCompatActivity {
     ArrayList<Verse> verse;
     int currentVars,porgress;
     boolean firstTime;
+    Toolbar toolbar;
 
 
 
@@ -37,6 +39,9 @@ public class LessonActivity extends AppCompatActivity {
 
         controller = new DBController(this);
         firstTime = true;
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        toolbar.setBackgroundColor(constant.color);
 
         LessonStr = (TextView) findViewById(R.id.LessonStr);
         VerseDisp = (TextView) findViewById(R.id.VerseTitle);
@@ -79,6 +84,9 @@ public class LessonActivity extends AppCompatActivity {
             }
         });
     }
+
+
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
@@ -115,7 +123,7 @@ public class LessonActivity extends AppCompatActivity {
     private void updateLesson(){
 
         curLesson = controller.getLesson(LessonID);
-//        getSupportActionBar().setTitle(curLesson.getLESSON_TITLE());
+        toolbar.setTitle(curLesson.getLESSON_TITLE());
         LessonStr.setText(extractVerse(curLesson.getLESSON_STRING()));
         LessonStr.setMovementMethod(LinkMovementMethod.getInstance());
         LessonStr.setHighlightColor(Color.TRANSPARENT);
