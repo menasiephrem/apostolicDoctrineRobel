@@ -37,6 +37,7 @@ public class LessonActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lesson);
 
+
         controller = new DBController(this);
         firstTime = true;
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -83,6 +84,7 @@ public class LessonActivity extends AppCompatActivity {
 
             }
         });
+        setTheme(constant.theme);
     }
 
 
