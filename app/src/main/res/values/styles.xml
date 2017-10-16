@@ -202,8 +202,8 @@
     <color name="purple_colorAccent">#d05ce3</color>
 
     <color name="red_colorPrimary">#ac1717</color>
-    <color name="red_colorPrimaryDark">#a61213</color>
-    <color name="red_colorAccent">#faf4284d</color>
+    <color name="red_colorPrimaryDark">#b71c1c</color>
+    <color name="red_colorAccent">#f4284d</color>
 
     <color name="green_colorPrimary">#0d9624</color>
     <color name="green_colorPrimaryDark">#096419</color>

@@ -31,10 +31,15 @@ public class MainActivity extends AppCompatActivity
     String [] strArr;
     DBController controller;
 
+    MyApplication app;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        app= (MyApplication)getApplication();
         super.onCreate(savedInstanceState);
         setTheme(constant.theme);
+        app.saveTheme(getApplicationContext(),constant.color);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

@@ -1,5 +1,8 @@
 package com.example.obelr.apostolicdoctrine;
 
+import android.util.Log;
+import android.widget.Toast;
+
 /**
  * Created by Obel.R on 10/1/2017.
  */
@@ -33,7 +36,7 @@ public class Methods {
         switch (constant.color){
 
             case red:
-                constant.theme=R.style.AppTheme_red;
+                constant.theme = R.style.AppTheme_red;
                 break;
             case pink:
                 constant.theme=R.style.AppTheme_pink;
@@ -79,7 +82,9 @@ public class Methods {
 
             case Lime:
                 constant.theme=R.style.AppTheme_Lime;
-                break;*/
+                break;
+
+   */
 
             case Amber:
                 constant.theme=R.style.AppTheme_Amber;
@@ -112,6 +117,7 @@ public class Methods {
 
             default:
                 constant.theme=R.style.AppTheme;
+                Log.e("default THEME", "caught in the default theme");
                 break;
         }
 

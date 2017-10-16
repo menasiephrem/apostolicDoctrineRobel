@@ -26,6 +26,8 @@ public class Intermediate extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setTheme(constant.theme);
         setContentView(R.layout.activity_intermediate);
+
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setBackgroundColor(constant.color);

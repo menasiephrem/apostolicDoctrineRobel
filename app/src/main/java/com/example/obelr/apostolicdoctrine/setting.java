@@ -28,8 +28,7 @@ import java.lang.reflect.Method;
 
 public class setting  extends AppCompatActivity{
 
-    SharedPreferences sharedPreferences;
-    SharedPreferences.Editor editor;
+    protected MyApplication app;
     Button button;
     Methods methods;
 
@@ -44,11 +43,13 @@ public class setting  extends AppCompatActivity{
         toolbar.setTitle("Setting");
         toolbar.setBackgroundColor(constant.color);
 
+        app = (MyApplication) getApplication();
+
 
         methods = new Methods();
         button = (Button) findViewById(R.id.button_color);
-        sharedPreferences = getSharedPreferences("setting", MODE_PRIVATE);
-        editor = sharedPreferences.edit();
+
+
         colorize();
 
         button.setOnClickListener(new View.OnClickListener() {
@@ -65,9 +66,6 @@ public class setting  extends AppCompatActivity{
                         constant.color = color;
 
                         methods.setColorTheme();
-                        editor.putInt("color", color);
-                        editor.putInt("theme", constant.theme);
-                        editor.apply();
 
                         Intent intent = new Intent(setting.this, MainActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

@@ -9,6 +9,7 @@ import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
+import android.text.style.ForegroundColorSpan;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -35,6 +36,7 @@ public class LessonActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTheme(constant.theme);
         setContentView(R.layout.activity_lesson);
 
 
@@ -57,6 +59,8 @@ public class LessonActivity extends AppCompatActivity {
         ProText.setTextSize(22);
         VerseString.setTextSize(16);
         verse = new ArrayList<>();
+
+        LessonStr.setLinkTextColor(Color.BLUE);
 
         Intent intent = getIntent();
         LessonID = intent.getStringExtra(Intent.EXTRA_TEXT);
@@ -84,7 +88,7 @@ public class LessonActivity extends AppCompatActivity {
 
             }
         });
-        setTheme(constant.theme);
+
     }
 
 
@@ -188,7 +192,9 @@ public class LessonActivity extends AppCompatActivity {
 
 
           ss.setSpan(new myClickableSpan(i),b+1,a, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+
             i=i+1;
+
 
         }
       return ss;
